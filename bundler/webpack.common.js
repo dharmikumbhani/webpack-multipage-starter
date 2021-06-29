@@ -83,7 +83,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'assets/images/[hash][ext]'
+                    filename: 'assets/images/[name][hash][ext]'
                 },
             },
 
@@ -92,7 +92,7 @@ module.exports = {
                 test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'assets/fonts/[hash][ext]'
+                    filename: 'assets/fonts/[name][hash][ext]'
                 },
             },
 
