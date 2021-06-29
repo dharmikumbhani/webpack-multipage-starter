@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const path = require('path');
 
@@ -22,6 +23,7 @@ let htmlPageNames = ['index', 'about', 'contact'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
   return new HtmlWebpackPlugin({
     template: `./src/page-${name}/${name}.html`, // relative path to the HTML files
+    inject: true,
     minify: true,
     filename: `${name}.html`, // output HTML files
     chunks: [`${name}`] // respective JS files
@@ -49,12 +51,27 @@ module.exports = {
     devtool: 'source-map',
 
     plugins:[
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, '../static') }
+            ]
+        }),
         new MiniCSSExtractPlugin(),
         // new BundleAnalyzerPlugin(),
     ].concat(multipleHtmlPlugins),
 
     module: {
         rules: [
+            {
+                // https://webpack.js.org/guides/asset-modules/#replacing-inline-loader-syntax
+                resourceQuery: /raw/,
+                type: 'asset/source'
+            },
+            {
+                // https://webpack.js.org/loaders/html-loader/#usage
+                resourceQuery: /template/,
+                loader: 'html-loader'
+            },
 
             //JS
             {
@@ -77,23 +94,16 @@ module.exports = {
                 ]
             },
 
-            //HTMl
+            // Images
             {
-                // https://webpack.js.org/guides/asset-modules/#replacing-inline-loader-syntax
-                resourceQuery: /raw/,
-                type: 'asset/source'
-            },
-
-            {
-                // https://webpack.js.org/loaders/html-loader/#usage
-                resourceQuery: /template/,
-                loader: 'html-loader'
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                type: 'asset/resource'
             },
 
             //Fonts
             {
-                test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/, 
-                type: 'asset/inline'
+                test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
+                type: 'asset/inline',
             },
 
             // Shaders
