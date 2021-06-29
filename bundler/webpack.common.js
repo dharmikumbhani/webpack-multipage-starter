@@ -4,18 +4,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const path = require('path');
 
-const optimizations = {
-    splitChunks: {
-        cacheGroups: {
-            commons: {
-                test: /[\\/]node_modules[\\/].*\.js$/,
-                chunks: "all",
-                priority: 1
-            }
-        }
-    }
-}
-
 // https://stackoverflow.com/a/63385300/12268569
 let htmlPageNames = ['index', 'about', 'contact'];
 //Returns an array of all new HTML Pages instances
@@ -39,8 +27,6 @@ module.exports = {
 
     entry: entryPoints,
 
-    optimization: optimizations,
-
     output:
     {
         filename: '[name].bundle.[contenthash].js',
@@ -51,7 +37,7 @@ module.exports = {
 
     plugins:[
         new MiniCSSExtractPlugin(),
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
     ].concat(multipleHtmlPlugins),
 
     module: {

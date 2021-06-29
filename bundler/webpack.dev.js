@@ -7,11 +7,23 @@ const infoColor = (_message) => {
     return `\u001b[1m\u001b[34m${_message}\u001b[39m\u001b[22m`
 }
 
+const optimizations = {
+    splitChunks: {
+        cacheGroups: {
+            commons: {
+                test: /[\\/]node_modules[\\/].*\.js$/,
+                chunks: "all",
+                priority: 1
+            }
+        }
+    }
+}
 
 module.exports = merge(
     commonConfiguration,
     {
         mode: 'development',
+        optimization: optimizations,
         devServer: {
             host: '0.0.0.0',
             port: portFinderSync.getPort(8080),
