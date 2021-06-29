@@ -89,6 +89,7 @@ module.exports = {
                 loader: 'html-loader'
             },
 
+            // https://webpack.js.org/guides/asset-modules/#resource-assets
             // https://webpack.js.org/guides/asset-management/
             //https://dev.to/smelukov/webpack-5-asset-modules-2o3h
             // Images
