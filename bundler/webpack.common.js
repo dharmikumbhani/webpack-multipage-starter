@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const path = require('path');
 
@@ -51,28 +50,12 @@ module.exports = {
     devtool: 'source-map',
 
     plugins:[
-        // new CopyWebpackPlugin({
-        //     patterns: [
-        //         { from: path.resolve(__dirname, '../static') }
-        //     ]
-        // }),
         new MiniCSSExtractPlugin(),
         // new BundleAnalyzerPlugin(),
     ].concat(multipleHtmlPlugins),
 
     module: {
         rules: [
-            {
-                // https://webpack.js.org/guides/asset-modules/#replacing-inline-loader-syntax
-                resourceQuery: /raw/,
-                type: 'asset/source'
-            },
-            {
-                // https://webpack.js.org/loaders/html-loader/#usage
-                resourceQuery: /template/,
-                loader: 'html-loader'
-            },
-
             //JS
             {
                 test: /\.js$/,
@@ -94,6 +77,20 @@ module.exports = {
                 ]
             },
 
+            //HTML Templates
+            {
+                // https://webpack.js.org/guides/asset-modules/#replacing-inline-loader-syntax
+                resourceQuery: /raw/,
+                type: 'asset/source'
+            },
+            {
+                // https://webpack.js.org/loaders/html-loader/#usage
+                resourceQuery: /template/,
+                loader: 'html-loader'
+            },
+
+            // https://webpack.js.org/guides/asset-management/
+            //https://dev.to/smelukov/webpack-5-asset-modules-2o3h
             // Images
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
