@@ -51,11 +51,11 @@ module.exports = {
     devtool: 'source-map',
 
     plugins:[
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: path.resolve(__dirname, '../static') }
-            ]
-        }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         { from: path.resolve(__dirname, '../static') }
+        //     ]
+        // }),
         new MiniCSSExtractPlugin(),
         // new BundleAnalyzerPlugin(),
     ].concat(multipleHtmlPlugins),
@@ -97,13 +97,19 @@ module.exports = {
             // Images
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/images/[hash][ext]'
+                },
             },
 
             //Fonts
             {
                 test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
-                type: 'asset/inline',
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/fonts/[hash][ext]'
+                },
             },
 
             // Shaders

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Gilroy-Medium';
-    src: url('../../static/fonts/Gilroy-Medium.woff2') format('woff2');
+    src: url('../fonts/Gilroy-Medium.woff2') format('woff2');
 }
 body{
     background-color: #040754;
