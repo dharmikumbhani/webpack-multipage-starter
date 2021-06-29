@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -36,6 +37,11 @@ module.exports = {
     devtool: 'source-map',
 
     plugins:[
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, '../static') }
+            ]
+        }),
         new MiniCSSExtractPlugin(),
         new BundleAnalyzerPlugin(),
     ].concat(multipleHtmlPlugins),
