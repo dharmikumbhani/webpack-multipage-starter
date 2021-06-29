@@ -1,0 +1,7 @@
+body{
+    background-color: steelblue;
+}
+li {
+    display: inline;
+    margin: 12px;
+}

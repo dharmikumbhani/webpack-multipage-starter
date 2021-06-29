@@ -2,9 +2,10 @@
   "name": "webpack-multipage-starter",
   "version": "1.0.0",
   "description": "Starter template for a multipage website using webpack",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "webpack --config ./bundler/webpack.common.js",
+    "dev": "webpack serve --config ./bundler/webpack.dev.js",
+    "build": "webpack --config ./bundler/webpack.prod.js"
   },
   "keywords": [
     "template",
