@@ -8,7 +8,7 @@ Webpack-multipage (multiple entry points) starter template for creating a multip
 4. Check out that entry point using `<local Hosting Address>/<name>.html`
   
 ## To remove an existing page:
-1. Delete that folder
+1. Delete the respective folder
 2. Remove that `<name>` from the `htmlPagesArray`.
 3. Re-run the server - `npm run dev`.
 4. That entry point should no longer be accessible.
