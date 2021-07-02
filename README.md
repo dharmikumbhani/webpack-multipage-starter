@@ -3,7 +3,7 @@
 Webpack-multipage (multiple entry points) starter template for creating a multipage static html website.
 
 ### Difference between this and main branch:
-- CopyWebpackPlugin to have access to textures and other resources directly in the `dist` folder when using three.js.
+- `CopyWebpackPlugin` to have access to textures and other resources directly in the `dist` folder when using three.js.
 
 ### To add new pages:
 1. Create a folder in the src directory with the name page-<name> and its respective <name>.js, <name>.css and <name>.html files. Make sure that you use the same <name> in all those three places.
