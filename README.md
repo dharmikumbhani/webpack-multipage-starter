@@ -1,4 +1,4 @@
-#webpack-multipage-starter using webpack5 - three.js
+# webpack-multipage-starter using webpack5 - three.js
 
 Webpack-multipage (multiple entry points) starter template for creating a multipage static html website.
 
